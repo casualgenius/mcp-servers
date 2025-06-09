@@ -1,3 +1,12 @@
 # Casual MCP Servers
 
-This repository contains a collection of Micro Code Pilot (MCP) servers. Each server is available as a standalone Python package on PyPI. See the individual directories at the repository root for more details.
+Collection of simple Model Context Protocol servers for use with tool calling LLMs. Each server is packaged for PyPI and can be run directly from this repository.
+
+## Available Servers
+
+- [Math](servers/math/README.md) – arithmetic utilities.
+- [Time](servers/time/README.md) – date and time helpers.
+- [Weather](servers/weather/README.md) – weather and air quality information.
+- [Words](servers/words/README.md) – dictionary and thesaurus lookups.
+
+See the README in each directory for usage instructions.
