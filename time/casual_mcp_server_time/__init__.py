@@ -101,5 +101,13 @@ def parse_human_date(
         raise ValueError("Could not parse the date description.")
     return parsed.date().isoformat()
 
-if __name__ == "__main__":
+
+
+
+def main() -> None:
+    """Run the Time MCP server."""
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()

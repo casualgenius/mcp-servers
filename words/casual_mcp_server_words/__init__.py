@@ -64,5 +64,13 @@ def synonyms(
     return list(synonyms_set)
 
 
-if __name__ == "__main__":
+
+
+
+def main() -> None:
+    """Run the Words MCP server."""
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()
