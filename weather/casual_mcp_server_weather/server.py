@@ -1,4 +1,4 @@
-from typing import Annotated, Tuple, List, Dict
+from typing import Annotated, Tuple
 from fastmcp import FastMCP
 from pydantic import Field
 import requests
@@ -58,9 +58,14 @@ def get_uv_risk(index: float) -> str:
 
 
 @mcp.tool(description="Get current temperature, wind speed, and condition for a location.")
-def current_weather(location: Annotated[str, Field(description="City or place name")]) -> dict:
+def current_weather(
+    location: Annotated[str, Field(description="City or place name")]
+) -> dict:
     lat, lon = resolve_location(location)
-    resp = requests.get("https://api.open-meteo.com/v1/forecast", params={"latitude": lat, "longitude": lon, "current_weather": True})
+    resp = requests.get(
+        "https://api.open-meteo.com/v1/forecast",
+        params={"latitude": lat, "longitude": lon, "current_weather": True},
+    )
     data = resp.json().get("current_weather", {})
     return {
         "temperature_c": data.get("temperature"),
@@ -71,15 +76,24 @@ def current_weather(location: Annotated[str, Field(description="City or place na
 
 
 @mcp.tool(description="Get the daily weather forecast for the next N days.")
-def forecast(location: Annotated[str, Field(description="City or place name")], days: Annotated[int, Field(ge=1, le=7)] = 3) -> List[dict]:
+def forecast(
+    location: Annotated[str, Field(description="City or place name")],
+    days: Annotated[int, Field(ge=1, le=7)] = 3,
+) -> list[dict]:
     lat, lon = resolve_location(location)
     params = {
         "latitude": lat,
         "longitude": lon,
-        "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max",
-        "timezone": "auto"
+        "daily": (
+            "temperature_2m_max,temperature_2m_min," "precipitation_sum,windspeed_10m_max"
+        ),
+        "timezone": "auto",
     }
-    daily = requests.get("https://api.open-meteo.com/v1/forecast", params=params).json().get("daily", {})
+    daily = (
+        requests.get("https://api.open-meteo.com/v1/forecast", params=params)
+        .json()
+        .get("daily", {})
+    )
     return [
         {
             "date": daily["time"][i],
@@ -93,15 +107,19 @@ def forecast(location: Annotated[str, Field(description="City or place name")], 
 
 
 @mcp.tool(description="Get UV index forecast and risk level for the next few days.")
-def uv_index(location: Annotated[str, Field(description="City or place name")]) -> List[dict]:
+def uv_index(location: Annotated[str, Field(description="City or place name")]) -> list[dict]:
     lat, lon = resolve_location(location)
     params = {
         "latitude": lat,
         "longitude": lon,
         "daily": "uv_index_max",
-        "timezone": "auto"
+        "timezone": "auto",
     }
-    daily = requests.get("https://api.open-meteo.com/v1/forecast", params=params).json().get("daily", {})
+    daily = (
+        requests.get("https://api.open-meteo.com/v1/forecast", params=params)
+        .json()
+        .get("daily", {})
+    )
     return [
         {
             "date": daily["time"][i],
