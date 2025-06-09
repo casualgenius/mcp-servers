@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "casual-mcp-server-time"
-version = "0.1.0"
+version = "1.0.0"
 description = "Time and date utilities as a FastMCP server"
 authors = [{name = "Alex Stansfield"}]
 readme = "README.md"
