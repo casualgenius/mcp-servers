@@ -8,6 +8,8 @@ import dateparser
 
 mcp = FastMCP("Time and Date 🚀")
 
+tz = "Asia/Bangkok"
+
 @mcp.tool()
 def current_time(
     timezone: Annotated[
@@ -15,7 +17,7 @@ def current_time(
         Field(
             description=(
                 "A valid IANA timezone string, e.g., 'UTC', 'Asia/Bangkok'. Use "
-                "'Asia/Bangkok' if the timezone cannot be determined."
+                f"'{tz}' if the timezone cannot be determined."
             ),
         ),
     ],

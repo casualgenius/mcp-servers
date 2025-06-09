@@ -17,9 +17,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/alexstansfield/casual-mcp-servers"
-Issues = "https://github.com/alexstansfield/casual-mcp-servers/issues"
-Source = "https://github.com/alexstansfield/casual-mcp-servers"
+Homepage = "https://github.com/casualgenius/mcp-servers"
+Issues = "https://github.com/casualgenius/mcp-serverss/issues"
+Source = "https://github.com/casualgenius/mcp-servers"
 
 [project.scripts]
-casual-mcp-server-weather = "casual_mcp_server_weather:main"
+casual-mcp-server-weather = "casual_mcp_server_weather.server:main"

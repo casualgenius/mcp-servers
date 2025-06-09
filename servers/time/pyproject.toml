@@ -17,9 +17,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/alexstansfield/casual-mcp-servers"
-Issues = "https://github.com/alexstansfield/casual-mcp-servers/issues"
-Source = "https://github.com/alexstansfield/casual-mcp-servers"
+Homepage = "https://github.com/casualgenius/mcp-servers"
+Issues = "https://github.com/casualgenius/mcp-servers/issues"
+Source = "https://github.com/casualgenius/mcp-servers"
 
 [project.scripts]
-casual-mcp-server-time = "casual_mcp_server_time:main"
+casual-mcp-server-time = "casual_mcp_server_time.server:main"

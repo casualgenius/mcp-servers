@@ -105,9 +105,6 @@ def round_number(
 #     return pairs
 
 
-
-
-
 def main() -> None:
     """Run the Math MCP server."""
     mcp.run()
