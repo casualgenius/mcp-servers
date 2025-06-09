@@ -99,5 +99,13 @@ def round_number(
 #     return pairs
 
 
-if __name__ == "__main__":
+
+
+
+def main() -> None:
+    """Run the Math MCP server."""
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()

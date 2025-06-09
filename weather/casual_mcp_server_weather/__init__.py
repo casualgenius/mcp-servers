@@ -134,5 +134,13 @@ def air_quality(location: Annotated[str, Field(description="City or place name")
         "time": hourly.get("time", [None])[latest]
     }
 
-if __name__ == "__main__":
+
+
+
+def main() -> None:
+    """Run the Weather MCP server."""
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()
