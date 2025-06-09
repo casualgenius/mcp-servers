@@ -3,7 +3,13 @@ from fastmcp import FastMCP
 from pydantic import Field
 import requests
 
-mcp = FastMCP("Dictionary & Thesaurus", instructions="Tools for definitions, synonyms, and example usage of English words using the Free Dictionary API.")
+mcp = FastMCP(
+    "Dictionary & Thesaurus",
+    instructions=(
+        "Tools for definitions, synonyms, and example usage of "
+        "English words using the Free Dictionary API."
+    ),
+)
 
 API_BASE = "https://api.dictionaryapi.dev/api/v2/entries/en/"
 

@@ -1,8 +1,14 @@
-from typing import Annotated, Literal
+from typing import Annotated
 from fastmcp import FastMCP
 from pydantic import Field
 
-mcp = FastMCP("Math & Conversion Server", instructions="Useful utilities for calculations, percentages, rounding, and unit conversion.")
+mcp = FastMCP(
+    "Math & Conversion Server",
+    instructions=(
+        "Useful utilities for calculations, percentages, "
+        "rounding, and unit conversion."
+    ),
+)
 conversion_factors = {
     ("km", "mi"): 0.621371,
     ("mi", "km"): 1.60934,
