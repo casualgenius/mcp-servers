@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, date
+import os
 from zoneinfo import ZoneInfo
 from typing import Annotated
 from fastmcp import FastMCP
@@ -6,9 +7,9 @@ from pydantic import Field
 import calendar
 import dateparser
 
-mcp = FastMCP("Time and Date 🚀")
+mcp = FastMCP("Time and Date")
 
-tz = "Asia/Bangkok"
+tz = os.getenv("LOCAL_TIME_ZONE", "Etc/UTC")
 
 @mcp.tool()
 def current_time(
@@ -16,7 +17,7 @@ def current_time(
         str,
         Field(
             description=(
-                "A valid IANA timezone string, e.g., 'UTC', 'Asia/Bangkok'. Use "
+                "A valid IANA timezone string, e.g., 'Etc/UTC', 'Asia/Bangkok'. Use "
                 f"'{tz}' if the timezone cannot be determined."
             ),
         ),

@@ -1,8 +1,12 @@
-# casual-mcp-server-weather
+# Weather MCP Server
 
 Weather forecast and air quality utilities using Open‑Meteo served via FastMCP.
 
+The server can be accessed locally over Stdio or remotely over SSE/Streamable HTTP.
+
 ## Tools
+
+The tools exposed by the MCP server include:
 
 - **current_weather** - Current temperature, wind speed and condition for a location.
 - **forecast** - Daily forecast for the next few days.
