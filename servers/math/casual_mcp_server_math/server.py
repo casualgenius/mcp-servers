@@ -1,6 +1,7 @@
 from typing import Annotated
 from fastmcp import FastMCP
 from pydantic import Field
+from casual_mcp_servers_shared.cli import start_mcp
 
 mcp = FastMCP(
     "Math & Conversion Server",
@@ -105,12 +106,9 @@ def round_number(
 #     return pairs
 
 
-
-
-
 def main() -> None:
     """Run the Math MCP server."""
-    mcp.run()
+    start_mcp(mcp, "Start the Math MCP server.")
 
 
 if __name__ == "__main__":

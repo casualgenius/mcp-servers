@@ -1,12 +1,16 @@
 from datetime import datetime, timedelta, date
+import os
 from zoneinfo import ZoneInfo
 from typing import Annotated
 from fastmcp import FastMCP
 from pydantic import Field
 import calendar
 import dateparser
+from casual_mcp_servers_shared.cli import start_mcp
 
-mcp = FastMCP("Time and Date 🚀")
+mcp = FastMCP("Time and Date")
+
+tz = os.getenv("LOCAL_TIME_ZONE", "Etc/UTC")
 
 @mcp.tool()
 def current_time(
@@ -14,8 +18,8 @@ def current_time(
         str,
         Field(
             description=(
-                "A valid IANA timezone string, e.g., 'UTC', 'Asia/Bangkok'. Use "
-                "'Asia/Bangkok' if the timezone cannot be determined."
+                "A valid IANA timezone string, e.g., 'Etc/UTC', 'Asia/Bangkok'. Use "
+                f"'{tz}' if the timezone cannot be determined."
             ),
         ),
     ],
@@ -114,7 +118,7 @@ def parse_human_date(
 
 def main() -> None:
     """Run the Time MCP server."""
-    mcp.run()
+    start_mcp(mcp, "Start the Time MCP server.")
 
 
 if __name__ == "__main__":
