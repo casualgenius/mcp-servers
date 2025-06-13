@@ -2,6 +2,7 @@ from typing import Annotated
 from fastmcp import FastMCP
 from pydantic import Field
 import requests
+from casual_mcp_servers_shared.cli import start_mcp
 
 mcp = FastMCP(
     "Dictionary & Thesaurus",
@@ -70,12 +71,9 @@ def synonyms(
     return list(synonyms_set)
 
 
-
-
-
 def main() -> None:
-    """Run the Words MCP server."""
-    mcp.run()
+    """Run the Words MCP server with optional CLI arguments."""
+    start_mcp(mcp, "Start the Words MCP server.")
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ from typing import Annotated, Tuple
 from fastmcp import FastMCP
 from pydantic import Field
 import requests
+from casual_mcp_servers_shared.cli import start_mcp
 
 mcp = FastMCP("Weather", instructions="Weather tools using Open-Meteo.")
 
@@ -157,7 +158,7 @@ def air_quality(location: Annotated[str, Field(description="City or place name")
 
 def main() -> None:
     """Run the Weather MCP server."""
-    mcp.run()
+    start_mcp(mcp, "Start the Weather MCP server.")
 
 
 if __name__ == "__main__":

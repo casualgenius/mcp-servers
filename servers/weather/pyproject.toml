@@ -14,6 +14,7 @@ dependencies = [
     "fastmcp",
     "pydantic",
     "requests",
+    "casual-mcp-servers-shared",
 ]
 
 [project.urls]
@@ -23,3 +24,6 @@ Source = "https://github.com/casualgenius/mcp-servers"
 
 [project.scripts]
 casual-mcp-server-weather = "casual_mcp_server_weather.server:main"
+
+[tool.uv.sources]
+casual-mcp-servers-shared = { path = "../../servers_shared" }

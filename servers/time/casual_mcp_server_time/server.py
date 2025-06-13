@@ -6,6 +6,7 @@ from fastmcp import FastMCP
 from pydantic import Field
 import calendar
 import dateparser
+from casual_mcp_servers_shared.cli import start_mcp
 
 mcp = FastMCP("Time and Date")
 
@@ -117,7 +118,7 @@ def parse_human_date(
 
 def main() -> None:
     """Run the Time MCP server."""
-    mcp.run()
+    start_mcp(mcp, "Start the Time MCP server.")
 
 
 if __name__ == "__main__":

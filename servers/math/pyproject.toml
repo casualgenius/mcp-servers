@@ -13,6 +13,7 @@ requires-python = ">=3.11"
 dependencies = [
     "fastmcp",
     "pydantic",
+    "casual-mcp-servers-shared",
 ]
 
 [project.urls]
@@ -22,3 +23,6 @@ Source = "https://github.com/casualgenius/mcp-servers"
 
 [project.scripts]
 casual-mcp-server-math = "casual_mcp_server_math.server:main"
+
+[tool.uv.sources]
+casual-mcp-servers-shared = { path = "../../servers_shared" }
