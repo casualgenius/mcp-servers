@@ -42,7 +42,6 @@ name = "casual-mcp-server-time"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [
-    { name = "casual-mcp-servers-shared" },
     { name = "dateparser" },
     { name = "fastmcp" },
     { name = "pydantic" },
@@ -50,16 +49,10 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "casual-mcp-servers-shared", directory = "../../servers_shared" },
     { name = "dateparser" },
     { name = "fastmcp" },
     { name = "pydantic" },
 ]
-
-[[package]]
-name = "casual-mcp-servers-shared"
-version = "0.1.0"
-source = { directory = "../../servers_shared" }
 
 [[package]]
 name = "certifi"

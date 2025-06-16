@@ -2,7 +2,7 @@ from typing import Annotated
 from fastmcp import FastMCP
 from pydantic import Field
 import requests
-from casual_mcp_servers_shared.cli import start_mcp
+from .cli import start_mcp
 
 mcp = FastMCP(
     "Dictionary & Thesaurus",

@@ -40,10 +40,9 @@ wheels = [
 
 [[package]]
 name = "casual-mcp-server-words"
-version = "1.0.0"
+version = "1.0.1"
 source = { editable = "." }
 dependencies = [
-    { name = "casual-mcp-servers-shared" },
     { name = "fastmcp" },
     { name = "pydantic" },
     { name = "requests" },
@@ -51,16 +50,10 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "casual-mcp-servers-shared", directory = "../../servers_shared" },
     { name = "fastmcp" },
     { name = "pydantic" },
     { name = "requests" },
 ]
-
-[[package]]
-name = "casual-mcp-servers-shared"
-version = "0.1.0"
-source = { directory = "../../servers_shared" }
 
 [[package]]
 name = "certifi"
