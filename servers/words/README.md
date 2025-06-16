@@ -2,7 +2,6 @@
 
 [![PyPI](https://img.shields.io/pypi/v/casual-mcp-server-words.svg)](https://pypi.org/project/casual-mcp-server-words/)
 [![License](https://img.shields.io/github/license/casualgenius/mcp-servers)](https://github.com/casualgenius/mcp-servers/blob/main/LICENSE)
-[![Build](https://img.shields.io/github/actions/workflow/status/casualgenius/mcp-servers/ci.yml?branch=main)](https://github.com/casualgenius/mcp-servers/actions)
 
 > An MCP server providing dictionary and thesaurus tools for LLMs using the Free Dictionary API.
 

@@ -1,8 +1,17 @@
 # Weather MCP Server
 
-Weather forecast and air quality utilities using Open‑Meteo.
+[![PyPI](https://img.shields.io/pypi/v/casual-mcp-server-weather.svg)](https://pypi.org/project/casual-mcp-server-weather/)
+[![License](https://img.shields.io/github/license/casualgenius/mcp-servers)](https://github.com/casualgenius/mcp-servers/blob/main/LICENSE)
 
-The server can be accessed locally over Stdio or remotely over Streamable HTTP.
+> An MCP server providing weather tools for LLMs.
+
+---
+
+## Overview
+
+The Weather MCP Server provides weather forecast and air quality utilities using Open‑Meteo for language models and AI assistants. It allows tools like `current_weather`, `forecast`, `air_quality` to be called programmatically via Stdio or Streamable HTTP.
+
+---
 
 ## Tools
 
