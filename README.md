@@ -1,6 +1,6 @@
 # Casual MCP Servers
 
-Collection of simple Model Context Protocol servers for use with tool calling LLMs. Each server is packaged for PyPI and can be run directly from this repository.
+Collection of Model Context Protocol servers for use with tool calling LLMs. Each server is packaged for PyPI and can be run directly from this repository.
 
 ## Available Servers
 
