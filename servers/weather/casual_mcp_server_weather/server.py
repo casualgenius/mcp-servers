@@ -43,17 +43,17 @@ weather_codes = {
 }
 
 uv_risk_levels = [
-    (0, 2, "Low"),
-    (3, 5, "Moderate"),
-    (6, 7, "High"),
-    (8, 10, "Very High"),
+    (0, 3, "Low"),
+    (3, 6, "Moderate"),
+    (6, 8, "High"),
+    (8, 11, "Very High"),
     (11, float("inf"), "Extreme")
 ]
 
 
 def get_uv_risk(index: float) -> str:
     for low, high, level in uv_risk_levels:
-        if low <= index <= high:
+        if low <= index < high:
             return level
     return "Unknown"
 
@@ -65,13 +65,21 @@ def current_weather(
     lat, lon = resolve_location(location)
     resp = requests.get(
         "https://api.open-meteo.com/v1/forecast",
-        params={"latitude": lat, "longitude": lon, "current_weather": True},
+        params = {
+            "latitude": lat, 
+            "longitude": lon, 
+            "current": "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,wind_speed_10m,wind_direction_10m,weather_code"
+        },
     )
-    data = resp.json().get("current_weather", {})
+    data = resp.json().get("current", {})
     return {
-        "temperature_c": data.get("temperature"),
-        "windspeed_kph": data.get("windspeed"),
-        "condition": weather_codes.get(data.get("weathercode"), "Unknown"),
+        "temperature_c": data.get("temperature_2m"),
+        "relative_humidity": data.get("relative_humidity_2m"),
+        "windspeed_kph": data.get("wind_speed_10m"),
+        "wind_direction": data.get("wind_direction_10m"),
+        "precipitation": data.get("precipitation"),
+        "rain": data.get("rain"),
+        "condition": weather_codes.get(data.get("weather_code"), "Unknown"),
         "time": data.get("time")
     }
 
@@ -79,15 +87,13 @@ def current_weather(
 @mcp.tool(description="Get the daily weather forecast for the next N days.")
 def forecast(
     location: Annotated[str, Field(description="City or place name")],
-    days: Annotated[int, Field(ge=1, le=7)] = 3,
+    days: Annotated[int, Field(ge=1, le=7, description="Number of days to get a forecast, defaults to 7 if not provided")] = 7,
 ) -> list[dict]:
     lat, lon = resolve_location(location)
     params = {
         "latitude": lat,
         "longitude": lon,
-        "daily": (
-            "temperature_2m_max,temperature_2m_min," "precipitation_sum,windspeed_10m_max"
-        ),
+        "daily": "weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,precipitation_probability_max,precipitation_hours,wind_speed_10m_max",
         "timezone": "auto",
     }
     daily = (
@@ -100,8 +106,12 @@ def forecast(
             "date": daily["time"][i],
             "max_temp_c": daily["temperature_2m_max"][i],
             "min_temp_c": daily["temperature_2m_min"][i],
+            "wind_max_kph": daily["wind_speed_10m_max"][i],
             "rain_mm": daily["precipitation_sum"][i],
-            "wind_max_kph": daily["windspeed_10m_max"][i]
+            "precipitation_probability": daily["precipitation_probability_max"][i],
+            "uv_index": daily["uv_index_max"][i],
+            "uv_risk_level": get_uv_risk(daily["uv_index_max"][i]),
+            "condition": weather_codes.get(daily["weather_code"][i], "Unknown"),
         }
         for i in range(min(days, len(daily.get("time", []))))
     ]
@@ -138,19 +148,16 @@ def air_quality(location: Annotated[str, Field(description="City or place name")
     params = {
         "latitude": lat,
         "longitude": lon,
-        "hourly": "pm10,pm2_5,ozone",
+        "current": "us_aqi,pm10,pm2_5,ozone",
         "timezone": "auto"
     }
-    hourly = requests.get(url, params=params).json().get("hourly", {})
-    latest = -1
+    quality = requests.get(url, params=params).json().get("current", {})
     return {
-        "summary": "Air quality data for the latest hour.",
-        "values": {
-            "pm10": hourly.get("pm10", [None])[latest],
-            "pm2_5": hourly.get("pm2_5", [None])[latest],
-            "ozone": hourly.get("ozone", [None])[latest]
-        },
-        "time": hourly.get("time", [None])[latest]
+        "us_aqi": quality.get("us_aqi", [None]),
+        "pm10": quality.get("pm10", [None]),
+        "pm2_5": quality.get("pm2_5", [None]),
+        "ozone": quality.get("ozone", [None]),
+        "time": quality.get("time", [None])
     }
 
 
