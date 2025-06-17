@@ -1,6 +1,20 @@
+[project]
+name = "casual-mcp-servers"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
 [tool.ruff]
 target-version = "py310"
 line-length = 120
 
 [tool.ruff.lint]
 select = ["E", "F"]
+
+[dependency-groups]
+dev = [
+    "casual-mcp>=0.3.1",
+    "ruff>=0.11.13",
+]
