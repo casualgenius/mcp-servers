@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "casual-mcp-server-trivia"
+version = "1.0.0"
+description = "Trivia questions as an MCP server"
+authors = [{name = "Alex Stansfield"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp",
+    "pydantic",
+    "requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/casualgenius/mcp-servers"
+Issues = "https://github.com/casualgenius/mcp-serverss/issues"
+Source = "https://github.com/casualgenius/mcp-servers"
+
+[project.scripts]
+casual-mcp-server-trivia = "casual_mcp_server_trivia.server:main"
