@@ -68,7 +68,10 @@ def current_weather(
         params = {
             "latitude": lat, 
             "longitude": lon, 
-            "current": "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,wind_speed_10m,wind_direction_10m,weather_code"
+            "current": (
+                "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,"
+                "rain,wind_speed_10m,wind_direction_10m,weather_code"
+            )
         },
     )
     data = resp.json().get("current", {})
@@ -87,13 +90,19 @@ def current_weather(
 @mcp.tool(description="Get the daily weather forecast for the next N days.")
 def forecast(
     location: Annotated[str, Field(description="City or place name")],
-    days: Annotated[int, Field(ge=1, le=7, description="Number of days to get a forecast, defaults to 7 if not provided")] = 7,
+    days: Annotated[
+        int, 
+        Field(ge=1, le=7, description="Number of days to get a forecast, defaults to 7 if not provided")
+    ] = 7,
 ) -> list[dict]:
     lat, lon = resolve_location(location)
     params = {
         "latitude": lat,
         "longitude": lon,
-        "daily": "weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,precipitation_probability_max,precipitation_hours,wind_speed_10m_max",
+        "daily": (
+            "weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,"
+            "precipitation_probability_max,precipitation_hours,wind_speed_10m_max"
+        ),
         "timezone": "auto",
     }
     daily = (
