@@ -1,7 +1,9 @@
 import argparse
 from fastmcp import FastMCP
 
+
 def start_mcp(mcp: FastMCP, description: str = "Run an MCP server.") -> None:
+    """Start an MCP server using the provided FastMCP instance."""
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument(
         "--transport",
@@ -14,11 +16,12 @@ def start_mcp(mcp: FastMCP, description: str = "Run an MCP server.") -> None:
 
     args = parser.parse_args()
 
-    if args.transport == 'streamable-http':
+    if args.transport == "streamable-http":
         mcp.run(
-            transport='streamable-http',
+            transport="streamable-http",
             port=args.port,
             host=args.host,
         )
     else:
-        mcp.run(transport='stdio')
+        mcp.run(transport="stdio")
+

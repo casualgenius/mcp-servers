@@ -6,7 +6,7 @@ from fastmcp import FastMCP
 from pydantic import Field
 import calendar
 import dateparser
-from .cli import start_mcp
+from mcp_common.cli import start_mcp
 
 mcp = FastMCP("Time and Date")
 

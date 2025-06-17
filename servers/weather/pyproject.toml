@@ -23,3 +23,9 @@ Source = "https://github.com/casualgenius/mcp-servers"
 
 [project.scripts]
 casual-mcp-server-weather = "casual_mcp_server_weather.server:main"
+
+[tool.setuptools]
+packages = ["casual_mcp_server_weather", "mcp_common"]
+
+[tool.setuptools.package-dir]
+mcp_common = "../../mcp_common"

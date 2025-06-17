@@ -2,7 +2,7 @@ from typing import Annotated, Tuple
 from fastmcp import FastMCP
 from pydantic import Field
 import requests
-from .cli import start_mcp
+from mcp_common.cli import start_mcp
 
 mcp = FastMCP("Weather", instructions="Weather tools using Open-Meteo.")
 
@@ -91,8 +91,12 @@ def current_weather(
 def forecast(
     location: Annotated[str, Field(description="City or place name")],
     days: Annotated[
-        int, 
-        Field(ge=1, le=7, description="Number of days to get a forecast, defaults to 7 if not provided")
+        int,
+        Field(
+            ge=1,
+            le=7,
+            description="Number of days to get a forecast, defaults to 7 if not provided",
+        ),
     ] = 7,
 ) -> list[dict]:
     lat, lon = resolve_location(location)
