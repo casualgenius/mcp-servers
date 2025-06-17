@@ -1,7 +1,7 @@
 from typing import Annotated
 from fastmcp import FastMCP
 from pydantic import Field
-from .cli import start_mcp
+from mcp_common.cli import start_mcp
 
 mcp = FastMCP(
     "Math Server",
