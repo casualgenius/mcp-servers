@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "servers/math"
+		},
+		{
+			"path": "servers/time"
+		},
+		{
+			"path": "servers/weather"
+		},
+		{
+			"path": "servers/words"
+		},
+		{
+			"path": "servers/trivia"
+		}
+	],
+	"settings": {}
+}
